@@ -19,3 +19,17 @@ task.spawn(function()
         RS.Heartbeat:Wait(); -- Обновляем каждый кадр
     end;
 end)
+
+local cb = Instance.new("BindableFunction")
+	cb.OnInvoke = function() print("Clicked") end
+	pcall(function()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Anti-fling",
+			Text = "Works",
+			Duration = 5,
+			Callback = cb,
+			Button1 = "OK"
+		})
+	end)
+	task.wait()
+	cb:Destroy()
